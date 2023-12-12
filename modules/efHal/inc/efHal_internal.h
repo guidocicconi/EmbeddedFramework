@@ -39,6 +39,7 @@
 #include "efHal.h"
 #include "efHal_config.h"
 #include "efHal_gpio.h"
+#include "efHal_analog.h"
 #include "efHal_pwm.h"
 #include "efHal_i2c.h"
 #include "efHal_uart.h"

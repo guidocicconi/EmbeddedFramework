@@ -48,10 +48,10 @@
  * Defines and typedefs
  *****************************************************************************/
 
-#define OLED_DATA()   efHal_gpio_setPin(_cmdPin, true)
+#define OLED_DATA()   efHal_gpio_setPin(_cmdPin, true) 	//GPIOC7 --> OLED DATA/CMD pin
 #define OLED_CMD()    efHal_gpio_setPin(_cmdPin, false)
 
-#define OLED_ENABLE() efHal_gpio_setPin(_rstPin, true)
+#define OLED_ENABLE() efHal_gpio_setPin(_rstPin, true) 		//GPIOC0 --> OLED reset pin
 #define OLED_DISABLE() efHal_gpio_setPin(_rstPin, false)
 
 #define X_OFFSET 0
@@ -271,6 +271,8 @@ void oled_init(efHal_dh_t spi, efHal_gpio_id_t cmdPin, efHal_gpio_id_t rstPin)
     _spi = spi;
 
     efHal_spi_config(spi, 4000000, EF_HAL_SPI_CPOL_1_CPHA_1);
+    efHal_gpio_confPin(cmdPin, EF_HAL_GPIO_OUTPUT, EF_HAL_GPIO_PULL_DISABLE, false);
+    efHal_gpio_confPin(rstPin, EF_HAL_GPIO_OUTPUT, EF_HAL_GPIO_PULL_DISABLE, false);
 
     /* make sure power is off */
     OLED_DISABLE();
